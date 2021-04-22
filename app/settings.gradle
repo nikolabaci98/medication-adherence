@@ -1,3 +1,0 @@
-include ':medication_management_app'
-include ':app'
-rootProject.name = "My Application"
