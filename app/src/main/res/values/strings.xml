@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Medication Management</string>
+
+    <string name="med_form">Medication Form</string>
+
+    <string name="med_name">Medication:</string>
+    <string name="med_name_hint">Medication Name</string>
+
+    <string name="med_dosage">Dosage:</string>
+    <string name="med_dosage_hint">Intake Dosage</string>
+
+    <string name="med_doctor">Doctor:</string>
+    <string name="med_doctor_hint">Prescribed By</string>
+
+    <string name="med_date">Date:</string>
+    <string name="med_date_hint">Prescribed Date</string>
+
+    <string name="med_details">Details:</string>
+    <string name="med_details_hint">Details about medicaiton</string>
+</resources>
