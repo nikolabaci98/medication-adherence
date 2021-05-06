@@ -1,4 +1,7 @@
+package edu.cuny.qc.cs.medication_management.data;
+
 import java.time.LocalDate;
+
 public class Patient extends User {
 	private LocalDate dob;
 	//drug list as a linked-list

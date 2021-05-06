@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "779278588680",
+    "project_id": "fir-auth-19d2d",
+    "storage_bucket": "fir-auth-19d2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779278588680:android:84f2c34fbc774d16faeabd",
+        "android_client_info": {
+          "package_name": "edu.cuny.qc.cs.medication_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779278588680-028od24vluuff703t23i73d4pdh296e3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.cuny.qc.cs.medication_management",
+            "certificate_hash": "b7a93a3ea48f1d71516f2a0d4a686c36b8e1a4c8"
+          }
+        },
+        {
+          "client_id": "779278588680-9uh270l5r6k9lcl1cp53r0r4lfbptou6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoLtLglO5BKHDbMB-2CAi7UCxryp1QAr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779278588680-9uh270l5r6k9lcl1cp53r0r4lfbptou6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

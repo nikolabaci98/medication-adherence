@@ -30,6 +30,7 @@ public class DashboardFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.medication_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
         updateUI();
         return view;
     }

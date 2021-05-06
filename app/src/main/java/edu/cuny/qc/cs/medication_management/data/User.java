@@ -1,4 +1,6 @@
 // this class will need to use the remote db jar file
+package edu.cuny.qc.cs.medication_management.data;
+
 abstract public class User {
 	private String userID;
 	private String username;

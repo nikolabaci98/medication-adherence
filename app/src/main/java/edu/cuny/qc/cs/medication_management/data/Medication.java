@@ -33,6 +33,7 @@ public class Medication implements Parcelable {
     public void setMedicationName(String name){
         medicationName = name;
     }
+
     public String getMedicationName(){
         return medicationName;
     }
@@ -40,6 +41,7 @@ public class Medication implements Parcelable {
     public void setMedicationDosage(String dosage){
         medicationDosage = dosage;
     }
+
     public String getMedicationDosage(){
         return medicationDosage;
     }
@@ -47,6 +49,7 @@ public class Medication implements Parcelable {
     public void setMedicationPrescribedBy(String doctor){
         medicationPrescribedBy = doctor;
     }
+
     public String getMedicationPrescribedBy(){
         return medicationPrescribedBy;
     }
@@ -54,6 +57,7 @@ public class Medication implements Parcelable {
     public void setMedicationPrescribedDate(Date date){
         medicationPrescribedDate = date;
     }
+
     public Date getMedicationPrescribedDate(){
         return medicationPrescribedDate;
     }
@@ -61,6 +65,7 @@ public class Medication implements Parcelable {
     public void setMedicationDetails(String details){
         medicationDetails = details;
     }
+
     public String getMedicationDetails(){
         return medicationDetails;
     }

@@ -17,4 +17,38 @@
 
     <string name="med_details">Details:</string>
     <string name="med_details_hint">Details about medicaiton</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_name">Full Name</string>
+    <string name="prompt_phone">Phone Number</string>
+    <string name="action_sign_in">Register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="registerWelcomeText">Welcome!</string>
+    <string name="registerPromptText">Enter the information below to register and manage your medications</string>
+
+    <string name="codePromptText">Please enter code that we send to you via SMS</string>
+
+    <string name="nameBlank">Enter your name to continue</string>
+    <string name="phoneBlank">Enter your phone number to continue </string>
+    <string name="phoneError">Please provide a correct U.S. phone number</string>
+    <string name="authFailed">The authentication failed for the provided number.</string>
+    <string name="tryAgain">Try again.</string>
+
+    <string name="codeBlank">Please enter the code to continue.</string>
+    <string name="codeError">The code was incorrect.</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
 </resources>

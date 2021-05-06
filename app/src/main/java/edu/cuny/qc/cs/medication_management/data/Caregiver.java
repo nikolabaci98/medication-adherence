@@ -1,5 +1,6 @@
+package edu.cuny.qc.cs.medication_management.data;
 
-public class Caregiver extends User{
+public class Caregiver extends User {
 	private Patient patient;
 	private boolean hasPermission;
 	public Caregiver (String uname, String pword, String fname, Patient p, boolean hP) {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controllers.LoginCode">
+
+
+    <TextView
+        android:id="@+id/codePromptText"
+        android:layout_width="336dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/codePromptText"
+        android:textAlignment="center"
+        android:textColor="#4D00E9"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/authCodeTextview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
+
+    <EditText
+        android:id="@+id/authCodeTextview"
+        android:layout_width="243dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="288dp"
+        android:textAlignment="center"
+        android:hint="123456"
+        android:maxLength="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/verifyCodeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="308dp"
+        android:text="Verify"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authCodeTextview" />
+
+    <TextView
+        android:id="@+id/codeErrorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#FF5722"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verifyCodeButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ public class MedicationList {
     private MedicationList(Context context){
         medicationList = new ArrayList<>();
         //dummy medications
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 15; i++) {
             Medication med = new Medication();
             med.setMedicationName("Medication no. " + (i + 1));
             med.setMedicationDosage((i % 2)+1 + " pill(s) after each meal");

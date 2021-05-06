@@ -9,18 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicationManagement">
-
-        <activity android:name=".controllers.DashboardActivity">
+        <activity
+            android:name=".controllers.LoginCode"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".controllers.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".controllers.DashboardActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".controllers.MedicationFormActivity">
-
-        </activity>
-
+        <activity
+            android:name=".controllers.MedicationFormActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
