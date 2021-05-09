@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="370dp"
+    android:layout_height="115dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="50dp"
+        android:layout_height="31dp"
+        android:text="Time:"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TimePicker
+        android:id="@+id/time0"
+        android:layout_width="239dp"
+        android:layout_height="114dp"
+        android:amPmTextColor="#000000"
+        android:background="#C19B9B"
+        android:backgroundTint="#E1B6B6"
+        android:ems="10"
+        android:inputType="time"
+        android:isScrollContainer="false"
+        android:numbersBackgroundColor="#000000"
+        android:numbersInnerTextColor="#000000"
+        android:numbersSelectorColor="#000000"
+        android:numbersTextColor="#000000"
+        android:textColor="#000000"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:background="#FBFBFB"
+        android:backgroundTint="#FDFDFD"
+        android:text="X"
+        android:textColor="#F6F6F6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
