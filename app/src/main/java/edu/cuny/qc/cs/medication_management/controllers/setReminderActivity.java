@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import edu.cuny.qc.cs.medication_management.R;
+import edu.cuny.qc.cs.medication_management.data.User;
 
 public class setReminderActivity extends Fragment implements View.OnClickListener{
     RecyclerView rcv;
@@ -27,6 +28,7 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
     Button btn;
     Button btn2;
     String s1, s2, s3;
+    User currentUser;
     @Override
     //Christopher- this is for the layout that the user will use to input times to be reminded for their medication
     ///btn is for the add times button to add additional times for their medication
@@ -35,13 +37,13 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
         rcv = (RecyclerView) view.findViewById(R.id.recyclerView);
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
+        currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
         //rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         list = new ArrayList<>();
-        times  = getArguments().getStringArrayList("list");
-        s1 = getArguments().getString("mdName");
-        s2 = getArguments().getString("dS");
-        s3 = getArguments().getString("dets");
+        times  = getActivity().getIntent().getStringArrayListExtra("list");
+        s1 = getActivity().getIntent().getStringExtra("mdName");
+        s2 = getActivity().getIntent().getStringExtra("dS");
+        s3 = getActivity().getIntent().getStringExtra("dets");
         //  adapter = new timelistAdapter(list);
         //rcv.setAdapter(adapter);
         btn = view.findViewById(R.id.addTimeBtn);
@@ -179,6 +181,7 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
             Intent intent = new Intent(getActivity(), setMedInfoActivity.class);
            // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             intent.putStringArrayListExtra("list",list2);
+            intent.putExtra("currentUser", currentUser);
             intent.putExtra("mdName", s1);
             intent.putExtra("dS", s2);
             intent.putExtra("dets", s3);

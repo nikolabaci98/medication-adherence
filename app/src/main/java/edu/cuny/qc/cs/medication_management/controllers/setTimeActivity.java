@@ -7,13 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.cuny.qc.cs.medication_management.R;
 
-public class setTimeActivity extends AppCompatActivity {
+public class setTimeActivity extends SingleFragmentActivity {
+    @Override
+    protected Fragment createFragment() throws IOException {
+        //checks();
+        return new setReminderActivity();
+    }
     //Christopher - this starts reminderactivity
-    protected void onCreate(Bundle savedInstanceState) {
+   /* protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setmedinfobase);
         Intent intent = getIntent();
@@ -38,5 +44,7 @@ public class setTimeActivity extends AppCompatActivity {
                     .commit();
         }
     }
+    */
+
 
 }

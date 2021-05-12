@@ -21,20 +21,19 @@ import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class DashboardActivity extends SingleFragmentActivity {
-
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    private final long NUM_BYTES = 1024 * 1024 * 1L;
-    private long availableBytes;
-    private final String filename = "patienthealthrecord.txt";
-    private File file;
+   // private FirebaseAuth mAuth;
+   // private FirebaseUser currentUser;
+    //private final long NUM_BYTES = 1024 * 1024 * 1L;
+   // private long availableBytes;
+   // private final String filename = "patienthealthrecord.txt";
+  // // private File file;
     @Override
     protected Fragment createFragment() throws IOException {
-        checks();
+        //checks();
         return new DashboardFragment();
     }
 
-    private void checks() throws IOException {
+  /*  private void checks() throws IOException {
         init();
         if(isUserNull()){
             registerUser();
@@ -76,7 +75,7 @@ public class DashboardActivity extends SingleFragmentActivity {
          * If the file exits then we read the data an show it on the dashboard.
          * This will occur when the user has installed the app and is reopening
          * it again.
-         */
+
         if (file.exists()) {
             readFile(filename);
         }
@@ -84,7 +83,7 @@ public class DashboardActivity extends SingleFragmentActivity {
          * The file is read in memory, when the application is first installed.
          * In our case we are assuming that this file "file.txt" is an uploaded by the user
          * or fetched from a health provider in the form of PHR
-         */
+
         else if (availableBytes >= NUM_BYTES) {
             createFile();
         }
@@ -137,5 +136,5 @@ public class DashboardActivity extends SingleFragmentActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

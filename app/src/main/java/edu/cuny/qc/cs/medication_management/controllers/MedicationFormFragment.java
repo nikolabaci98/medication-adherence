@@ -57,7 +57,7 @@ public class MedicationFormFragment extends Fragment {
         medDate = (Button) view.findViewById(R.id.med_date_button);
         medDetails = (EditText) view.findViewById(R.id.med_details_multiline);
 
-        medName.setText(medication.getMedicationName());
+      //  medName.setText(medication.getMedicationName());
         medName.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -67,8 +67,8 @@ public class MedicationFormFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                medication.setMedicationName(s.toString());
-                Log.d(TAG, medication.getMedicationName());
+             //   medication.setMedicationName(s.toString());
+             //   Log.d(TAG, medication.getMedicationName());
             }
 
             @Override
@@ -76,7 +76,7 @@ public class MedicationFormFragment extends Fragment {
 
             }
         });
-        medDosage.setText(medication.getMedicationDosage());
+       // medDosage.setText(medication.getMedicationDosage());
 //        medDosage.addTextChangedListener(new TextWatcher() {
 //
 //            @Override
@@ -94,7 +94,7 @@ public class MedicationFormFragment extends Fragment {
 //
 //            }
 //        });
-        medDoctor.setText(medication.getMedicationPrescribedBy());
+       // medDoctor.setText(medication.getMedicationPrescribedBy());
 //        medDoctor.addTextChangedListener(new TextWatcher(){
 //
 //            @Override
@@ -112,8 +112,8 @@ public class MedicationFormFragment extends Fragment {
 //
 //            }
 //        });
-        medDate.setText(medication.getMedicationPrescribedDate().toString());
-        medDetails.setText(medication.getMedicationDetails());
+       // medDate.setText(medication.getMedicationPrescribedDate().toString());
+       // medDetails.setText(medication.getMedicationDetails());
 //        medDetails.addTextChangedListener(new TextWatcher() {
 //
 //            @Override

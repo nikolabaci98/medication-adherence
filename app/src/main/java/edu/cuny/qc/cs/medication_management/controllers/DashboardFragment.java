@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,11 +18,13 @@ import java.util.List;
 import edu.cuny.qc.cs.medication_management.R;
 import edu.cuny.qc.cs.medication_management.data.Medication;
 import edu.cuny.qc.cs.medication_management.data.MedicationList;
+import edu.cuny.qc.cs.medication_management.data.User;
 
 public class DashboardFragment extends Fragment {
     private RecyclerView recyclerView;
     private MedicationAdapter adapter;
     private static final String TAG = "DashboardFragment";
+    User currentUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -30,7 +33,8 @@ public class DashboardFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.medication_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
+        currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
+      //  Toast.makeText(getActivity().getApplicationContext(), currentUser.getUserID(), Toast.LENGTH_SHORT).show();
         updateUI();
         return view;
     }
@@ -39,18 +43,22 @@ public class DashboardFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateUI();
+        Toast.makeText(getActivity().getApplicationContext(), currentUser.getUserID(), Toast.LENGTH_SHORT).show();
         Log.d(TAG, "On resume called!");
     }
 
     private void updateUI() {
         Log.d(TAG, "Inside updateUI()!");
-        MedicationList meds = MedicationList.get(getActivity());
-        List<Medication> medicationList = meds.getMedicationList();
-        for(int i = 0; i < 5; i++){
-            Log.d(TAG, medicationList.get(i).getMedicationName());
-        }
+        //MedicationList meds = MedicationList.get(getActivity());
+       // List<Medication> medicationList = meds.getMedicationList();
+        //for(int i = 0; i < 5; i++){
+           // Log.d(TAG, medicationList.get(i).getMedicationName());
+        //}
         if(adapter == null){
-            adapter = new MedicationAdapter(medicationList);
+            if(currentUser == null)System.out.println("currentUser is null");
+            currentUser.setMedicationList();
+            currentUser.getMedicationList().populateList(currentUser.getUserID());
+            adapter = new MedicationAdapter(currentUser.getMedicationList().getList());
             recyclerView.setAdapter(adapter);
         } else {
             Log.d(TAG, "notifyDataSetChanges()");
@@ -74,9 +82,8 @@ public class DashboardFragment extends Fragment {
 
         public void bind(Medication med){
             viewHolderMedication = med;
-            nameTextView.setText(viewHolderMedication.getMedicationName());
-
-            dosageTextView.setText(viewHolderMedication.getMedicationDosage());
+            nameTextView.setText(viewHolderMedication.getMedName());
+            dosageTextView.setText(viewHolderMedication.getDosageSize());
         }
 
         @Override

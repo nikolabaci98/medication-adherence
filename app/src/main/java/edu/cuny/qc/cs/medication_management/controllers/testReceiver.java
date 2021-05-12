@@ -18,7 +18,13 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import edu.cuny.qc.cs.medication_management.R;
-
+/*
+Christopher Jason- this is test Receiver Broadcast Receiver, this receiver is triggered when the alarm for a medication set by the user goes off
+from here i created the notification manager which will be responsible for allowing the notification to be viewed, in the setMedinfo fragment, i pass with the intent the values necessary to create the notification
+with the proper information, as well as information pertaining to the original time set, to determine if the timezone has changed to make sure that we send the alert 24hours apart from the previous alert time, I also
+manipulate the audio settings of the phone so that the alert is as "intrusive" in a sense, ,so that they will be prompted to respond and see the message, in this case i can only really detect if the phone is on vibrate,
+if so, i set it to sound with the ringer setting on max volume, i tried to "override" the do not disturb on the phone true the audioManager but it throw errors instead stating that only system apps can do this
+ */
 public class testReceiver extends BroadcastReceiver{
 
     public static String NOTIFICATION_ID = "notification-id" ;
@@ -51,12 +57,12 @@ public class testReceiver extends BroadcastReceiver{
             notificationChannel.setSound(notificationSound, new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE).build());
             notificationChannel.setVibrationPattern(pattern);
             AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE) ;
-            //if(am.getRingerMode() == 1){
-            //   am.setRingerMode(2);
-            //    int max = am.getStreamMaxVolume(AudioManager.STREAM_RING);
+            if(am.getRingerMode() == 1){
+               am.setRingerMode(2);
+                   int max = am.getStreamMaxVolume(AudioManager.STREAM_RING);
 
-           //     am.setStreamVolume(AudioManager.STREAM_RING, max, 0);
-          //  }
+                am.setStreamVolume(AudioManager.STREAM_RING, max, 0);
+            }
             //am.setRingerMode(2);
             notificationManager.createNotificationChannel(notificationChannel) ;
         }
@@ -84,7 +90,7 @@ public class testReceiver extends BroadcastReceiver{
         calendar.set(Calendar.SECOND, 0);
         calendar.add(Calendar.HOUR_OF_DAY, 24);
         //calendar.add(Calendar.MINUTE, 2);
-        Toast.makeText(context, calendar.getTime().toString(), Toast.LENGTH_LONG).show();;
+        //Toast.makeText(context, calendar.getTime().toString(), Toast.LENGTH_LONG).show();;
 
         intent.putExtra(testReceiver.NOTIFICATION_ID, id);
         intent.putExtra("mdName",medicationName);

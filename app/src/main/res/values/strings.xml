@@ -18,7 +18,7 @@
     <string name="med_details">Details:</string>
     <string name="med_details_hint">Details about medicaiton</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="prompt_name">Full Name</string>
+    <string name="prompt_name">UserName</string>
     <string name="prompt_phone">Phone Number</string>
     <string name="action_sign_in">Register</string>
     <string name="action_sign_in_short">Sign in</string>

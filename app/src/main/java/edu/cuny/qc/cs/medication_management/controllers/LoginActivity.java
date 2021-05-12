@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     //Entry point of the Firebase Authentication SDK
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
+    String phoneNumber;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     //Initialize all the member variables
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.login);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        phoneNumber ="";
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent codeIntent = new Intent(LoginActivity.this, LoginCode.class);
                 codeIntent.putExtra("authID", verificationId);
                 codeIntent.putExtra("username", username.getText().toString());
+                codeIntent.putExtra("phoneNumber", phoneNumber);
                 startActivity(codeIntent);
             }
         };
@@ -150,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
     private void verifyInfo(){
         String user_name = username.getText().toString();
         String phone_number = userphone.getText().toString();
-
+        phoneNumber = phone_number;
         if(user_name.isEmpty()){
             message.setText(R.string.nameBlank);
             getInfo();

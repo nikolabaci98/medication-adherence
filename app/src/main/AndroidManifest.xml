@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.cuny.qc.cs.medication_management">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,26 +19,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicationManagement">
         <activity
-            android:name=".controllers.LoginCode"
-            android:screenOrientation="portrait"></activity>
-        <activity
             android:name=".controllers.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
+        <activity android:name=".controllers.testStart">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".controllers.LoginCode"
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".controllers.DashboardActivity"
             android:screenOrientation="portrait">
 
         </activity>
+
+        <activity android:name=".controllers.registerActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity
             android:name=".controllers.MedicationFormActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".controllers.setMedInfoActivity">
+
+        </activity>
+        <activity android:name=".controllers.setTimeActivity"/>
+        <activity android:name=".controllers.ViewAccountActivity"/>
+        <activity android:name=".controllers.ViewLinksActivity"/>
+        <receiver android:name=".controllers.testReceiver"></receiver>
     </application>
 
 </manifest>

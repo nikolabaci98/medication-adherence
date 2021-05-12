@@ -33,6 +33,7 @@ public class LoginCode extends AppCompatActivity {
 
     private String username;
     private String mAuthID;
+    private String phoneNumber;
 
     private void init(){
         mAuth = FirebaseAuth.getInstance();
@@ -42,6 +43,7 @@ public class LoginCode extends AppCompatActivity {
         verifyButton = findViewById(R.id.verifyCodeButton);
         mAuthID = getIntent().getStringExtra("authID");
         username = getIntent().getStringExtra("username");
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
     }
 
     @Override

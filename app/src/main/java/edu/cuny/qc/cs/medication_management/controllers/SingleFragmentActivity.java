@@ -2,6 +2,7 @@ package edu.cuny.qc.cs.medication_management.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,21 +15,31 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.IOException;
 
 import edu.cuny.qc.cs.medication_management.R;
+import edu.cuny.qc.cs.medication_management.data.User;
 
 /*
 This is an abstract activity java class. Other activities will extend this
 activity to and only one method needs to be implemented. This class serves
 the purpose of writing less code and keeping the project organized.
  */
-public abstract class SingleFragmentActivity extends AppCompatActivity {
+public abstract class SingleFragmentActivity extends AppCompatActivity implements View.OnClickListener {
     protected abstract Fragment createFragment() throws IOException;
     private Button signOut;
+    Button viewAccount;
+    Button Home;
+    Button PatientLink;
+    Button addMedication;
+    User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
+        currentUser = getIntent().getParcelableExtra("currentUser");
         signOut = findViewById(R.id.signoutButton);
+        viewAccount = findViewById(R.id.viewAccount);
+        Home = findViewById(R.id.goHome);
+        PatientLink = findViewById(R.id.patientlink);
+        addMedication = findViewById(R.id.addMedication);
         //to manage fragments
         FragmentManager fm = getSupportFragmentManager();
         //in the activity_fragment we set aside space to put
@@ -59,7 +70,40 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                 registerUser();
             }
         });
+        viewAccount.setOnClickListener(this);
+        Home.setOnClickListener(this);
+        PatientLink.setOnClickListener(this);
+        addMedication.setOnClickListener(this);
     }
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == signOut.getId()) {
+            FirebaseAuth.getInstance().signOut();
+            registerUser();
+        }
+        else if(view.getId() == viewAccount.getId()){
+            Intent intent = new Intent(this, ViewAccountActivity.class);
+            intent.putExtra("currentUser", currentUser);
+            startActivity(intent);
+        }
+        else if(view.getId() == Home.getId()){
+            Intent intent = new Intent(this, DashboardActivity.class);
+            intent.putExtra("currentUser", currentUser);
+            startActivityIfNeeded(intent, 0);
+        }
+        else if(view.getId() == PatientLink.getId()){
+            Intent intent = new Intent(this, ViewLinksActivity.class);
+            intent.putExtra("currentUser",currentUser);
+            startActivity(intent);
+        }
+        else if(view.getId() == addMedication.getId()){
+            Intent intent = new Intent(this, setMedInfoActivity.class);
+            intent.putExtra("currentUser", currentUser );
+            startActivity(intent);
+        }
+
+    }
+
 
     private void registerUser(){
         Intent loginIntent = new Intent(SingleFragmentActivity.this, LoginActivity.class);

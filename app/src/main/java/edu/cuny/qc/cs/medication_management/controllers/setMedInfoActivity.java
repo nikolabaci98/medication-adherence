@@ -13,10 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -30,13 +32,21 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import edu.cuny.qc.cs.medication_management.R;
-
-public class setMedInfoActivity extends AppCompatActivity implements View.OnClickListener {
 /*
+Christopher Jason- this is the setMedinfoActivity, it extends the SngleFragmentActitivy to which it selects acitivity_fragment as its view and sets its createFragment method to return a new setMedinfoFragment
+the fragment sets  its target fragment to the fragment container in the activity_fragment layout
+ */
+public class setMedInfoActivity extends SingleFragmentActivity {
+    @Override
+    protected Fragment createFragment() throws IOException {
+        //checks();
+        return new setMedinfoFragment();
+    }
+    /*
 Christopher- this is the activity where the user will setup their medication information and set reminder times for the medication
 they will enter the name, dosageSize and details, click the setTimes button to set multiple times for the medication, then click set reminders to save all the data
  */
-   public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
+   /*public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
     EditText medName;
     EditText dosageSize;
@@ -313,6 +323,6 @@ they will enter the name, dosageSize and details, click the setTimes button to s
             }
         }
 
-
+*/
 
 }

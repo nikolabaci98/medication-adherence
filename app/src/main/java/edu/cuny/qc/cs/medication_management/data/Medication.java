@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Medication implements Parcelable {
-    private String medicationName;
+  /*  private String medicationName;
     private String medicationDosage;
     private String medicationPrescribedBy;
     private Date medicationPrescribedDate;
@@ -70,6 +70,67 @@ public class Medication implements Parcelable {
         return medicationDetails;
     }
 
+
+   */
+  private String MedName;
+    private String DosageSize;
+    private String Doctor;
+    private String Date;
+    private String howtoTake;
+    public Medication(){
+        MedName = null;
+        DosageSize = null;
+        Doctor = null;
+        Date = null;
+        howtoTake = null;
+    }
+    public Medication(Parcel in){
+        MedName = in.readString();
+        DosageSize = in.readString();
+      //  medicationPrescribedBy =  in.readString();
+        Date = /*(Date) */ in.readString();
+        howtoTake = in.readString();
+    }
+    public String getHowtoTake() {
+        return howtoTake;
+    }
+
+    public void setHowtoTake(String howtoTake) {
+        this.howtoTake = howtoTake;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public String getDoctor() {
+        return Doctor;
+    }
+
+   // public void setDoctor(String doctor) {
+     //   Doctor = doctor;
+    //}
+
+    public String getDosageSize() {
+        return DosageSize;
+    }
+
+    public void setDosageSize(String dosageSIze) {
+        DosageSize = dosageSIze;
+    }
+
+    public String getMedName() {
+        return MedName;
+    }
+
+    public void setMedName(String medName) {
+        MedName = medName;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -77,11 +138,11 @@ public class Medication implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(medicationName);
-        dest.writeString(medicationDosage);
-        dest.writeString(medicationPrescribedBy);
-        dest.writeSerializable(medicationPrescribedDate);
-        dest.writeString(medicationDetails);
+        dest.writeString(MedName);
+        dest.writeString(DosageSize);
+        dest.writeString(Doctor);
+        dest.writeString(Date);
+        dest.writeString(howtoTake);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

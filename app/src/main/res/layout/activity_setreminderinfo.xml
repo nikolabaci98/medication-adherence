@@ -38,9 +38,11 @@
         android:layout_height="54dp"
         android:backgroundTint="#000000"
         android:ems="10"
+        android:hint="ex. heart medication"
         android:inputType="textPersonName"
-        android:text="ex. heart medication"
         android:textColor="#000000"
+        android:textColorHighlight="#C6ADAD"
+        android:textColorHint="#C8ADAD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -67,9 +69,10 @@
         android:layout_height="63dp"
         android:backgroundTint="#000000"
         android:ems="10"
+        android:hint="ex. 4 Pills"
         android:inputType="textPersonName"
-        android:text="ex. 4 Pills"
         android:textColor="#000000"
+        android:textColorHint="#B89898"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.377"
@@ -96,8 +99,9 @@
         android:layout_height="81dp"
         android:backgroundTint="#000000"
         android:ems="10"
-        android:text="ex. Before breakfast with water, before dinner with water"
+        android:hint="ex. Before breakfast with water, before dinner with water"
         android:textColor="#000000"
+        android:textColorHint="#CDABAB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
@@ -138,10 +142,10 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/submitbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setTime"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.183" />
 
     <Button
         android:id="@+id/submitbtn"
@@ -150,8 +154,8 @@
         android:text="Set Reminder(s)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.877" />
 </androidx.constraintlayout.widget.ConstraintLayout>
