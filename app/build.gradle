@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        maven { url 'https://www.testfairy.com/maven' }
+        maven { url 'https://maven.testfairy.com' }
+    }
+    dependencies {
+        classpath 'com.testfairy.plugins.gradle:testfairy:3.+'
+    }
+}
 
 plugins {
     id 'com.android.application'
@@ -50,4 +61,13 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth:20.0.4'
+
+    implementation 'com.testfairy:testfairy-android-sdk:1.+@aar'
+}
+
+apply plugin: 'testfairy'
+android {
+    testfairyConfig {
+        apiKey '6de817d19ab4d84fd2e97b48e065700f3d894b4e'
+    }
 }

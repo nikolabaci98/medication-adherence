@@ -44,7 +44,9 @@
             android:id="@+id/med_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_name_hint" />
+            android:hint="@string/med_name_hint"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/med_dosage_label"
@@ -58,7 +60,9 @@
             android:id="@+id/med_dosage_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_dosage_hint" />
+            android:hint="@string/med_dosage_hint"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/med_doctor_label"
@@ -72,7 +76,9 @@
             android:id="@+id/med_doctor_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_doctor_hint" />
+            android:hint="@string/med_doctor_hint"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/med_date_label"
@@ -82,14 +88,16 @@
             android:text="@string/med_date"
             android:textColor="#2196F3" />
 
-        <Button
-            android:id="@+id/med_date_button"
+
+        <EditText
+            android:id="@+id/med_date_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FCFCFC"
-            android:backgroundTint="#1E80EF"
+            android:ems="10"
+            android:gravity="start|top"
             android:hint="@string/med_date_hint"
-            android:textColorHint="#FFFFFF" />
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/med_details_label"
@@ -97,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:drawableTint="#F2F2F2"
+
             android:text="@string/med_details"
             android:textColor="#2196F3" />
 
@@ -107,7 +116,34 @@
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/med_details_hint"
-            android:inputType="textMultiLine" />
+            android:imeOptions="actionDone"
+            android:inputType="textImeMultiLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/reminderButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Set Reminder" />
+
+            <TextView
+                android:id="@+id/alarmText"
+                android:layout_width="214dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/doneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done" />
 
 
     </LinearLayout>

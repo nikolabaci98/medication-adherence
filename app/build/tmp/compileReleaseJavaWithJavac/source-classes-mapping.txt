@@ -1,0 +1,47 @@
+edu/cuny/qc/cs/medication_management/controllers/LoginActivity.java
+ edu.cuny.qc.cs.medication_management.controllers.LoginActivity
+ edu.cuny.qc.cs.medication_management.controllers.LoginActivity$1
+ edu.cuny.qc.cs.medication_management.controllers.LoginActivity$2
+ edu.cuny.qc.cs.medication_management.controllers.LoginActivity$3
+edu/cuny/qc/cs/medication_management/controllers/ReminderActivity.java
+ edu.cuny.qc.cs.medication_management.controllers.ReminderActivity
+edu/cuny/qc/cs/medication_management/controllers/DashboardFragment.java
+ edu.cuny.qc.cs.medication_management.controllers.DashboardFragment
+ edu.cuny.qc.cs.medication_management.controllers.DashboardFragment$MedicationAdapter
+ edu.cuny.qc.cs.medication_management.controllers.DashboardFragment$MedicationHolder
+edu/cuny/qc/cs/medication_management/controllers/ReminderFragment.java
+ edu.cuny.qc.cs.medication_management.controllers.ReminderFragment
+ edu.cuny.qc.cs.medication_management.controllers.ReminderFragment$TimeHolder
+ edu.cuny.qc.cs.medication_management.controllers.ReminderFragment$TimelistAdapter
+edu/cuny/qc/cs/medication_management/controllers/MedicationFormActivity.java
+ edu.cuny.qc.cs.medication_management.controllers.MedicationFormActivity
+edu/cuny/qc/cs/medication_management/controllers/testReceiver.java
+ edu.cuny.qc.cs.medication_management.controllers.testReceiver
+edu/cuny/qc/cs/medication_management/data/Patient.java
+ edu.cuny.qc.cs.medication_management.data.Patient
+edu/cuny/qc/cs/medication_management/data/MedicationList.java
+ edu.cuny.qc.cs.medication_management.data.MedicationList
+edu/cuny/qc/cs/medication_management/controllers/DashboardActivity.java
+ edu.cuny.qc.cs.medication_management.controllers.DashboardActivity
+edu/cuny/qc/cs/medication_management/controllers/SingleFragmentActivity.java
+ edu.cuny.qc.cs.medication_management.controllers.SingleFragmentActivity
+ edu.cuny.qc.cs.medication_management.controllers.SingleFragmentActivity$1
+edu/cuny/qc/cs/medication_management/controllers/LoginCode.java
+ edu.cuny.qc.cs.medication_management.controllers.LoginCode
+ edu.cuny.qc.cs.medication_management.controllers.LoginCode$1
+ edu.cuny.qc.cs.medication_management.controllers.LoginCode$2
+ edu.cuny.qc.cs.medication_management.controllers.LoginCode$3
+edu/cuny/qc/cs/medication_management/data/Medication.java
+ edu.cuny.qc.cs.medication_management.data.Medication
+ edu.cuny.qc.cs.medication_management.data.Medication$1
+edu/cuny/qc/cs/medication_management/data/Caregiver.java
+ edu.cuny.qc.cs.medication_management.data.Caregiver
+edu/cuny/qc/cs/medication_management/data/User.java
+ edu.cuny.qc.cs.medication_management.data.User
+edu/cuny/qc/cs/medication_management/controllers/MedicationFormFragment.java
+ edu.cuny.qc.cs.medication_management.controllers.MedicationFormFragment
+ edu.cuny.qc.cs.medication_management.controllers.MedicationFormFragment$1
+ edu.cuny.qc.cs.medication_management.controllers.MedicationFormFragment$2
+ edu.cuny.qc.cs.medication_management.controllers.MedicationFormFragment$3
+edu/cuny/qc/cs/medication_management/BuildConfig.java
+ edu.cuny.qc.cs.medication_management.BuildConfig

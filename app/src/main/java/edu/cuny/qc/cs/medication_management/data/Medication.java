@@ -3,15 +3,16 @@ package edu.cuny.qc.cs.medication_management.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Medication implements Parcelable {
     private String medicationName;
     private String medicationDosage;
     private String medicationPrescribedBy;
-    private Date medicationPrescribedDate;
+    private String medicationPrescribedDate;
+    private boolean status;
     private String medicationDetails;
-    //reminder
+    private ArrayList<String> medicationReminders;
     //activity -> ignore
 
     public Medication(){
@@ -19,15 +20,29 @@ public class Medication implements Parcelable {
         medicationDosage = null;
         medicationPrescribedBy = null;
         medicationPrescribedDate = null;
+        status = false;
         medicationDetails = null;
+        medicationReminders = new ArrayList<String>();
     }
 
+    public Medication(String name, String dose, String doc, String date, boolean active, String details, ArrayList<String> list){
+        medicationName = name;
+        medicationDosage = dose;
+        medicationPrescribedBy = doc;
+        medicationPrescribedDate = date;
+        status = active;
+        medicationDetails = details;
+        medicationReminders = list;
+        medicationReminders.add("");
+    }
     public Medication(Parcel in){
         medicationName = in.readString();
         medicationDosage = in.readString();
         medicationPrescribedBy =  in.readString();
-        medicationPrescribedDate = (Date) in.readSerializable();
+        medicationPrescribedDate = in.readString();
+        status = in.readBoolean();
         medicationDetails = in.readString();
+        medicationReminders = in.readArrayList(String.class.getClassLoader());
     }
 
     public void setMedicationName(String name){
@@ -54,11 +69,11 @@ public class Medication implements Parcelable {
         return medicationPrescribedBy;
     }
 
-    public void setMedicationPrescribedDate(Date date){
+    public void setMedicationPrescribedDate(String date){
         medicationPrescribedDate = date;
     }
 
-    public Date getMedicationPrescribedDate(){
+    public String getMedicationPrescribedDate(){
         return medicationPrescribedDate;
     }
 
@@ -70,6 +85,15 @@ public class Medication implements Parcelable {
         return medicationDetails;
     }
 
+    public void setMedicationReminders(ArrayList<String> list){
+        medicationReminders = list;
+    }
+
+    public ArrayList<String> getMedicationReminders(){
+        return medicationReminders;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,8 +104,10 @@ public class Medication implements Parcelable {
         dest.writeString(medicationName);
         dest.writeString(medicationDosage);
         dest.writeString(medicationPrescribedBy);
-        dest.writeSerializable(medicationPrescribedDate);
+        dest.writeString(medicationPrescribedDate);
+        dest.writeBoolean(status);
         dest.writeString(medicationDetails);
+        dest.writeList(medicationReminders);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

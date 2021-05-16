@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent codeIntent = new Intent(LoginActivity.this, LoginCode.class);
                 codeIntent.putExtra("authID", verificationId);
                 codeIntent.putExtra("username", username.getText().toString());
+                codeIntent.putExtra("phonenumber", userphone.getText().toString());
                 startActivity(codeIntent);
             }
         };
@@ -197,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void closeKeyboard(){
         try {
-            //This menager is the middleman that controls the interaction between
+            //This manager is the middleman that controls the interaction between
             //application and the input mode
             InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
             //close the current soft input window (keyboard) from the activity

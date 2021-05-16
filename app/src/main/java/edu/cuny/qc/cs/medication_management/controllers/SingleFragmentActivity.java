@@ -1,7 +1,9 @@
 package edu.cuny.qc.cs.medication_management.controllers;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +25,7 @@ the purpose of writing less code and keeping the project organized.
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment() throws IOException;
     private Button signOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,8 +48,13 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, fragment)
                     .commit();
         }
-    }
 
+        if(!Settings.System.canWrite(this)){
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.setData(Uri.parse("package:" + this.getPackageName()));
+            this.startActivity(intent);
+        }
+    }
 
 
     @Override

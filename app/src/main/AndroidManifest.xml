@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="edu.cuny.qc.cs.medication_management">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -8,10 +22,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MedicationManagement">
+        android:theme="@style/Theme.MedicationManagement"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".controllers.ReminderActivity"></activity>
         <activity
             android:name=".controllers.LoginCode"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".controllers.LoginActivity"
             android:screenOrientation="portrait"
@@ -28,6 +44,12 @@
         <activity
             android:name=".controllers.MedicationFormActivity"
             android:screenOrientation="portrait" />
+
+        <receiver android:name=".controllers.testReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+        </receiver>
     </application>
 
 </manifest>
