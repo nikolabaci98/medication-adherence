@@ -114,7 +114,7 @@ public class testReceiver extends BroadcastReceiver{
         Notification.Builder builder = new Notification.Builder( context, "channel_id_test01") ;
         long time = System.currentTimeMillis();
         builder.setContentTitle( "Its Time to Take Your "+ mdName) ;
-        builder.setContentText("Dosage Size: "+ Ds+"\n Details: "+httM);
+        builder.setContentText("Dosage Size: "+ Ds);
         builder.setSmallIcon(R.drawable.ic_launcher_foreground) ;
         String text = "id: "+id +"\nTime to Take your "+mdName+ "\n Dosage Size: "+Ds+"\n Details: "+ httM;
         builder.setStyle(new Notification.BigTextStyle().bigText(text));
