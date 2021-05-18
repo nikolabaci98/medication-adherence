@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import edu.cuny.qc.cs.medication_management.R;
+import edu.cuny.qc.cs.medication_management.data.Medication;
 import edu.cuny.qc.cs.medication_management.data.User;
 
 public class setReminderActivity extends Fragment implements View.OnClickListener{
@@ -27,8 +28,9 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
     timelistAdapter adapter;
     Button btn;
     Button btn2;
-    String s1, s2, s3;
+    String s1, s2;
     User currentUser;
+    Medication med;
     @Override
     //Christopher- this is for the layout that the user will use to input times to be reminded for their medication
     ///btn is for the add times button to add additional times for their medication
@@ -38,12 +40,12 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
+        med = getActivity().getIntent().getParcelableExtra("medication");
         //rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         list = new ArrayList<>();
         times  = getActivity().getIntent().getStringArrayListExtra("list");
         s1 = getActivity().getIntent().getStringExtra("mdName");
         s2 = getActivity().getIntent().getStringExtra("dS");
-        s3 = getActivity().getIntent().getStringExtra("dets");
         //  adapter = new timelistAdapter(list);
         //rcv.setAdapter(adapter);
         btn = view.findViewById(R.id.addTimeBtn);
@@ -179,12 +181,12 @@ public class setReminderActivity extends Fragment implements View.OnClickListene
             }
            // System.out.println("timeList from fragment: "+ times.toString());
             Intent intent = new Intent(getActivity(), setMedInfoActivity.class);
-           // intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+          //  intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             intent.putStringArrayListExtra("list",list2);
             intent.putExtra("currentUser", currentUser);
+            intent.putExtra("medication", med);
             intent.putExtra("mdName", s1);
             intent.putExtra("dS", s2);
-            intent.putExtra("dets", s3);
             startActivityForResult(intent, 0);
         }
     }

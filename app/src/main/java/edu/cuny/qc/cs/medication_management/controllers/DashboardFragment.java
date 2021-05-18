@@ -25,6 +25,7 @@ public class DashboardFragment extends Fragment {
     private MedicationAdapter adapter;
     private static final String TAG = "DashboardFragment";
     User currentUser;
+    boolean upUI = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -35,15 +36,19 @@ public class DashboardFragment extends Fragment {
 
         currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
       //  Toast.makeText(getActivity().getApplicationContext(), currentUser.getUserID(), Toast.LENGTH_SHORT).show();
+        System.out.println(currentUser.getphoneNumber() +":"+currentUser.getFullName() +":"+ currentUser.getCaregiverStatus());
         updateUI();
+        upUI = true;
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateUI();
-        Toast.makeText(getActivity().getApplicationContext(), currentUser.getUserID(), Toast.LENGTH_SHORT).show();
+        if(upUI == true) {
+            updateUI();
+        }
+        Toast.makeText(getActivity().getApplicationContext(), currentUser.getphoneNumber(), Toast.LENGTH_SHORT).show();
         Log.d(TAG, "On resume called!");
     }
 
@@ -56,10 +61,13 @@ public class DashboardFragment extends Fragment {
         //}
         if(adapter == null){
             if(currentUser == null)System.out.println("currentUser is null");
-            currentUser.setMedicationList();
-            currentUser.getMedicationList().populateList(currentUser.getUserID());
-            adapter = new MedicationAdapter(currentUser.getMedicationList().getList());
-            recyclerView.setAdapter(adapter);
+
+                currentUser.setMedicationList();
+                currentUser.getMedicationList().populateList(currentUser.getFullName(), currentUser.getphoneNumber());
+
+                adapter = new MedicationAdapter(currentUser.getMedicationList().getList());
+                recyclerView.setAdapter(adapter);
+
         } else {
             Log.d(TAG, "notifyDataSetChanges()");
             adapter.notifyDataSetChanged();
@@ -89,6 +97,7 @@ public class DashboardFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Intent intent = MedicationFormActivity.newIntent(getActivity(), viewHolderMedication);
+            intent.putExtra("currentUser", currentUser);
             startActivity(intent);
         }
     }

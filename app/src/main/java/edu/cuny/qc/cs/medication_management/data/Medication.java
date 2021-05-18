@@ -76,27 +76,19 @@ public class Medication implements Parcelable {
     private String DosageSize;
     private String Doctor;
     private String Date;
-    private String howtoTake;
     public Medication(){
         MedName = null;
         DosageSize = null;
         Doctor = null;
         Date = null;
-        howtoTake = null;
     }
     public Medication(Parcel in){
         MedName = in.readString();
         DosageSize = in.readString();
       //  medicationPrescribedBy =  in.readString();
+        Doctor = in.readString();
         Date = /*(Date) */ in.readString();
-        howtoTake = in.readString();
-    }
-    public String getHowtoTake() {
-        return howtoTake;
-    }
 
-    public void setHowtoTake(String howtoTake) {
-        this.howtoTake = howtoTake;
     }
 
     public String getDate() {
@@ -111,9 +103,9 @@ public class Medication implements Parcelable {
         return Doctor;
     }
 
-   // public void setDoctor(String doctor) {
-     //   Doctor = doctor;
-    //}
+    public void setDoctor(String doctor) {
+       Doctor = doctor;
+    }
 
     public String getDosageSize() {
         return DosageSize;
@@ -142,7 +134,6 @@ public class Medication implements Parcelable {
         dest.writeString(DosageSize);
         dest.writeString(Doctor);
         dest.writeString(Date);
-        dest.writeString(howtoTake);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {

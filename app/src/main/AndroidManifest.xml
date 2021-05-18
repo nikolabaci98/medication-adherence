@@ -53,6 +53,8 @@
         <activity android:name=".controllers.setTimeActivity"/>
         <activity android:name=".controllers.ViewAccountActivity"/>
         <activity android:name=".controllers.ViewLinksActivity"/>
+        <activity android:name=".controllers.AddlinkActivity"/>
+        <activity android:name=".controllers.viewPatientRecordActivity"/>
         <receiver android:name=".controllers.testReceiver"></receiver>
     </application>
 

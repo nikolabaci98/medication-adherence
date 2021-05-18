@@ -26,10 +26,15 @@ public class MedicationList {
     public MedicationList(){
         list = new ArrayList<>();
     }
-    public void populateList(String ID){
+    public void populateList(String fullname, String phoneNumber){
         list = new ArrayList<>();
         retreiveDataConnect rdc = new retreiveDataConnect();
-        rdc.dbconnect(ID, list);
+        rdc.dbconnect(phoneNumber, fullname, list);
+    }
+    public void populateList( String phoneNumber){
+        list = new ArrayList<>();
+        retreiveDataConnect rdc = new retreiveDataConnect();
+        rdc.dbconnect(phoneNumber, list);
     }
     public ArrayList<Medication> getList(){
         return list;
@@ -67,7 +72,7 @@ public class MedicationList {
         Executor exec = Executors.newSingleThreadExecutor();
         boolean done = false;
         boolean issuedone = false;
-        public void dofetchData(String ID, ArrayList<Medication> list){
+        public void dofetchData(String ID,String phoneNumber,  ArrayList<Medication> list){
             exec.execute( ()->{
                 try{
                     URL link = new URL("http://68.198.11.61:8089/testretreiveUserData/testRetreive");
@@ -82,7 +87,7 @@ public class MedicationList {
                     connect.setDoInput(true);
                     OutputStream os = connect.getOutputStream();
                     BufferedWriter write = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
-                    String requestBody = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(ID, "UTF-8");
+                    String requestBody = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(ID, "UTF-8") +"&"+ URLEncoder.encode("phoneNumber", "UTF-8") + "=" + URLEncoder.encode(phoneNumber, "UTF-8");
                     write.write(requestBody);
                     write.flush();
                     write.close();
@@ -98,10 +103,13 @@ public class MedicationList {
                             Medication temp = new Medication();
                             x = b.readLine();
                             System.out.println(x);
+                            temp.setMedName(x);
+                            x = b.readLine();
                             temp.setDosageSize(x);
                             x = b.readLine();
-                            System.out.println(x);
-                            temp.setHowtoTake(x);
+                            temp.setDoctor(x);
+                            x = b.readLine();
+                            temp.setDate(x);
                             list.add(temp);
                         }
 
@@ -117,10 +125,78 @@ public class MedicationList {
                 issuedone = true;
             });
         }
-        public void dbconnect(String ID, ArrayList<Medication> list){
+        public void dofetchData(String phoneNumber,  ArrayList<Medication> list){
+            exec.execute( ()->{
+                try{
+                    URL link = new URL("http://68.198.11.61:8089/testretreiveUserData/testRetreive");
+                    HttpURLConnection connect = (HttpURLConnection) link.openConnection();
+                    //  Medication temp = new Medication();
+                    //  temp.setMedName(connect.getURL().toString());
+                    //  list.add(temp);
+                    //  done = true;
+                    connect.setRequestMethod("POST");
+                    System.out.println(connect.getRequestMethod());
+                    connect.setDoOutput(true);
+                    connect.setDoInput(true);
+                    OutputStream os = connect.getOutputStream();
+                    BufferedWriter write = new BufferedWriter(new OutputStreamWriter(os,"UTF-8"));
+                    String requestBody = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(phoneNumber, "UTF-8");
+                    write.write(requestBody);
+                    write.flush();
+                    write.close();
+                    os.close();
+                    connect.connect();
+                    InputStream in = new BufferedInputStream(connect.getInputStream());
+                    BufferedReader b = new BufferedReader(new InputStreamReader(in));
+                    String x;
+                    StringBuilder r = new StringBuilder();
+                    while((x = b.readLine()) != null){
+                        System.out.println(x);
+                        if(x.contains("--open:")){
+                            Medication temp = new Medication();
+                            x = b.readLine();
+                            System.out.println(x);
+                            temp.setMedName(x);
+                            x = b.readLine();
+                            temp.setDosageSize(x);
+                            x = b.readLine();
+                            temp.setDoctor(x);
+                            x = b.readLine();
+                            temp.setDate(x);
+                            list.add(temp);
+                        }
+
+                    }
+                    //Medication temp = new Medication();
+                    //  temp.setMedName(r.toString());
+                    // list.add(temp);
+                    done = true;
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+                issuedone = true;
+            });
+        }
+        public void dbconnect(String ID, String phoneNumber, ArrayList<Medication> list){
             done=  false;
             issuedone = false;
-            dofetchData(ID, list);
+            dofetchData(ID, phoneNumber,  list);
+            while(done == false){
+                try {   // counter = 0;
+                    Thread.sleep(1000);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            }
+
+        }
+        public void dbconnect(String phoneNumber, ArrayList<Medication> list){
+            done=  false;
+            issuedone = false;
+            dofetchData(phoneNumber,  list);
             while(done == false){
                 try {   // counter = 0;
                     Thread.sleep(1000);

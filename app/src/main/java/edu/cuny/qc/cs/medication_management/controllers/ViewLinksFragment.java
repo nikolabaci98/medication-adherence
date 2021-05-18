@@ -1,5 +1,6 @@
 package edu.cuny.qc.cs.medication_management.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +36,11 @@ import edu.cuny.qc.cs.medication_management.data.User;
  user id
 
  */
-public class ViewLinksFragment extends Fragment {
+public class  ViewLinksFragment extends Fragment implements View.OnClickListener {
     RecyclerView rcv;
     User currentUser;
     Button addlinks;
+    Button viewrecords;
     linklistAdapter adapter;
     ArrayList<String> links;
     public View onCreateView(LayoutInflater inf, ViewGroup vg, Bundle savedInstanceState){
@@ -50,6 +52,9 @@ public class ViewLinksFragment extends Fragment {
         rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         links = new ArrayList<>();
         addlinks = view.findViewById(R.id.addlinks);
+
+        addlinks.setOnClickListener(this);
+
         setup();
         return view;
     }
@@ -62,10 +67,21 @@ public class ViewLinksFragment extends Fragment {
         rcv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == addlinks.getId()){
+            Intent intent = new Intent(getActivity().getApplicationContext(), AddlinkActivity.class);
+            intent.putExtra("currentUser",currentUser);
+            startActivity(intent);
+        }
+
+    }
+
     private class linklistHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView displayuserID;
         Button rlbtn;
-
+        Button viewrecords;
         int counter = 0;
 
 
@@ -73,7 +89,9 @@ public class ViewLinksFragment extends Fragment {
             super(inflater.inflate(R.layout.linkmodel, parent, false));
             displayuserID = itemView.findViewById(R.id.linkuserText);
             rlbtn = itemView.findViewById(R.id.removelinkbtn);
+            viewrecords = itemView.findViewById(R.id.viewRecordBtn);
             rlbtn.setOnClickListener(this);
+            viewrecords.setOnClickListener(this);
         }
 
         public void bind(){
@@ -85,6 +103,16 @@ public class ViewLinksFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if(v.getId() == rlbtn.getId()){
+
+
+
+
+
+
+
+
+
+
                 int pos = getAdapterPosition();
                 getLinks gl = new getLinks(currentUser, adapter.linklist.get(pos));
                 System.out.println(gl.userid2);
@@ -93,6 +121,13 @@ public class ViewLinksFragment extends Fragment {
                 //adapter.notifyItemRemoved(pos);
                 adapter.notifyItemRangeChanged(pos, links.size());
                 adapter.notifyDataSetChanged();
+            }
+            else if(v.getId() == viewrecords.getId()){
+                System.out.println("hey");
+                Intent intent = new Intent(getActivity().getApplicationContext(), viewPatientRecordActivity.class);
+                intent.putExtra("currentUser", currentUser);
+                intent.putExtra("patientID", displayuserID.getText().toString());
+                startActivity(intent);
             }
         }
 
@@ -136,7 +171,7 @@ public class ViewLinksFragment extends Fragment {
             exec.execute( ()->{
                 try{
 
-                    URL link = new URL("http://68.198.11.61:8089/testretreiveUserData/getLinklist");
+                    URL link = new URL("http://68.198.11.61:8089/testgetLinks/getLinklist");
                     HttpURLConnection connect = (HttpURLConnection) link.openConnection();
                     connect.setRequestMethod("POST");
                     connect.setDoOutput(true);
@@ -147,7 +182,7 @@ public class ViewLinksFragment extends Fragment {
                     StringBuilder result = new StringBuilder();
                     result.append(URLEncoder.encode("userID", "UTF-8"));
                     result.append("=");
-                    result.append(URLEncoder.encode(user.getUserID(), "UTF-8"));
+                    result.append(URLEncoder.encode(user.getphoneNumber(), "UTF-8"));
 
                     write.write(result.toString());
                     write.flush();
@@ -174,7 +209,7 @@ public class ViewLinksFragment extends Fragment {
             exec.execute( ()->{
                 try{
 
-                    URL link = new URL("http://68.198.11.61:8089/testretreiveUserData/removeLink");
+                    URL link = new URL("http://68.198.11.61:8089/testremoveLink/removeLink");
                     HttpURLConnection connect = (HttpURLConnection) link.openConnection();
                     connect.setRequestMethod("POST");
                     connect.setDoOutput(true);
@@ -183,11 +218,11 @@ public class ViewLinksFragment extends Fragment {
                     BufferedWriter write = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                     // String requestBody = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode("test12345", "UTF-8");
                     StringBuilder result = new StringBuilder();
-                    System.out.println(user.getUserID());
+                    System.out.println(user.getphoneNumber());
                     System.out.println(userid2);
                     result.append(URLEncoder.encode("userID1", "UTF-8"));
                     result.append("=");
-                    result.append(URLEncoder.encode(user.getUserID(), "UTF-8"));
+                    result.append(URLEncoder.encode(user.getphoneNumber(), "UTF-8"));
                     result.append("&");
                     result.append(URLEncoder.encode("userID2", "UTF-8"));
                     result.append("=");

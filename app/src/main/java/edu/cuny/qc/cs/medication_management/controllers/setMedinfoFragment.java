@@ -32,6 +32,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import edu.cuny.qc.cs.medication_management.R;
+import edu.cuny.qc.cs.medication_management.data.Medication;
 import edu.cuny.qc.cs.medication_management.data.User;
 /*
 Christopher Jason- this is the setMedinfoFragment, this is where the user will enter information pertaining to their medication(name, dosageSize, details), this fragment starts the set time Actitivy so that the user can
@@ -46,7 +47,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
     private final static String default_notification_channel_id = "default" ;
     EditText medName;
     EditText dosageSize;
-    EditText details;
     TextView timelist;
     Button submitbtn;
     Button setTimes;
@@ -54,20 +54,20 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
     ArrayList<Integer> reminderID = new ArrayList<>();
     String mdName;
     String dS;
-    String dets;
     User currentUser;
+    Medication med;
     public View onCreateView(LayoutInflater inf, ViewGroup vg, Bundle savedInstanceState){
         View view = inf.inflate(R.layout.activity_setreminderinfo, vg, false);
-       // rcv = (RecyclerView) view.findViewById(R.id.recyclerView);
-        //rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        //rcv.setLayoutManager(new LinearLayoutManager(getActivity()));
         currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
-       // Toast.makeText(getActivity().getApplicationContext(), currentUser.getUserID(), Toast.LENGTH_SHORT).show();
+        med = getActivity().getIntent().getParcelableExtra("medication");
+
+       Toast.makeText(getActivity().getApplicationContext(), currentUser.getphoneNumber(), Toast.LENGTH_SHORT).show();
         medName = view.findViewById(R.id.medName);
         dosageSize = view.findViewById(R.id.dosageSize);
-        details = view.findViewById(R.id.importDetails);
+        if(med != null) {
+            medName.setText(med.getMedName());
+            dosageSize.setText(med.getDosageSize());
+        }
         timelist= view.findViewById(R.id.timesList);
         submitbtn = view.findViewById(R.id.submitbtn);
         setTimes = view.findViewById(R.id.setTime);
@@ -75,6 +75,7 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
         submitbtn.setOnClickListener(this);
         time = new ArrayList<>();
         reminderID = new ArrayList<>();
+
         return view;
     }
 
@@ -88,7 +89,7 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
             intent.putStringArrayListExtra("list",time);
             intent.putExtra("mdName", medName.getText().toString());
             intent.putExtra("dS", dosageSize.getText().toString());
-            intent.putExtra("dets", details.getText().toString());
+            intent.putExtra("medication", med);
 
             if(time == null){
                 System.out.println("time is null from start");
@@ -101,11 +102,14 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
             setAlarm();
         }
     }
-    @Override
+
     //this is mostly to provide a list of times in the main layout to the user so that they know what times they are setting
+    @Override
     public void onResume(){
         super.onResume();
-
+         currentUser = getActivity().getIntent().getParcelableExtra("currentUser");
+     //   med = getActivity().getIntent().getParcelableExtra("medication");
+     //  System.out.println(currentUser.getphoneNumber()+":"+currentUser.getFullName()+":"+currentUser.getCaregiverStatus());
         System.out.println("hey from onResume");
         time = getActivity().getIntent().getStringArrayListExtra("list");
         StringBuilder result = new StringBuilder();
@@ -123,7 +127,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
             }
             medName.setText(getActivity().getIntent().getStringExtra("mdName"));
             dosageSize.setText(getActivity().getIntent().getStringExtra("dS"));
-            details.setText(getActivity().getIntent().getStringExtra("dets"));
            // System.out.println(getIntent().getStringExtra("mdName")+", "+getIntent().getStringExtra("dS")+", "+getIntent().getStringExtra("dets"));
             timelist.setText(result);
             System.out.println("hey");
@@ -138,10 +141,8 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
         return true;
     }
     public void setAlarm(){
-
         String medicationName =  medName.getText().toString();
         String DosageSize = dosageSize.getText().toString();
-        String howtoTakeMed = details.getText().toString();
         System.out.println("hey from setAlarm");
         //this is a series of checks to make sure that the fields aren't empty, if so tell the user to fill in that field
         if(consistOfnothing(medicationName)){
@@ -151,10 +152,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
         else if(consistOfnothing(DosageSize)){
             System.out.println("no DosageSize");
             Toast.makeText(getActivity(), "Please Fill in DosageSize.", Toast.LENGTH_LONG).show();
-        }
-        else if(consistOfnothing(howtoTakeMed)){
-            System.out.println("no details");
-            Toast.makeText(getActivity(), "Please Fill in How Its Taken.", Toast.LENGTH_LONG).show();
         }
         else if(time == null){
             System.out.println("no details");
@@ -195,7 +192,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
                 intent.putExtra(testReceiver.NOTIFICATION_ID, id);
                 intent.putExtra("mdName", medicationName);
                 intent.putExtra("Ds", DosageSize);
-                intent.putExtra("httM", howtoTakeMed);
                 intent.putExtra("hour", hour);
                 intent.putExtra("minute", minute);
                 intent.putExtra("isDone", false);
@@ -216,15 +212,18 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
             //save the medication information
             //the id in this statement is for testing underneath this the prototype code using current User
             //writeData("995996", medicationName, DosageSize, howtoTakeMed);
-            writeData(currentUser.getUserID(), medicationName, DosageSize, howtoTakeMed);
+           if(med == null) {
+               writeData(currentUser.getphoneNumber(), currentUser.getFullName(), medicationName, DosageSize);
+               currentUser.medicationListchange = true;
+           }
             //prototype code to return to dashboard
             Intent intent = new Intent(getActivity().getApplicationContext(), DashboardActivity.class);
             intent.putExtra("currentUser", currentUser);
             startActivity(intent);
         }
     }
-    public void writeData(String userID,  String medicationName, String DosageSize, String howtoTakeMed){
-        saveData sd = new saveData(userID, medicationName, DosageSize, howtoTakeMed, time);
+    public void writeData(String userID,String fullname,  String medicationName, String DosageSize){
+        saveData sd = new saveData(userID,fullname,  medicationName, DosageSize, time);
         sd.saveInfo();
 
     }
@@ -234,16 +233,16 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
         Executor exec = Executors.newSingleThreadExecutor();
         //ignore this
         boolean t = false;
-        String userID;String medName; String dosage;String dets;ArrayList<String> timelist;
-        public saveData(String uid, String mdName, String dS, String dets, ArrayList<String> times){
-            userID = uid; medName= mdName; dosage = dS; this.dets = dets;timelist = times;
-            System.out.println("hey");
+        String userID;String fullname;String medName; String dosage;String dets;ArrayList<String> timelist;
+        public saveData(String uid, String fullname, String mdName, String dS, ArrayList<String> times){
+            userID = uid; this.fullname = fullname; medName= mdName; dosage = dS; this.dets = dets;timelist = times;
+            //System.out.println("hey");
         }
         public void saveInfo(){
             exec.execute( ()->{
                 try{
 
-                    URL link = new URL("http://68.198.11.61:8089/testretreiveUserData/setReminderInfo");
+                    URL link = new URL("http://68.198.11.61:8089/testSetReminderInfo/setReminderInfo");
                     HttpURLConnection connect = (HttpURLConnection) link.openConnection();
                     connect.setRequestMethod("POST");
                     connect.setDoOutput(true);
@@ -256,6 +255,10 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
                     result.append("=");
                     result.append(URLEncoder.encode(userID, "UTF-8"));
                     result.append("&");
+                    result.append(URLEncoder.encode("fullname", "UTF-8"));
+                    result.append("=");
+                    result.append(URLEncoder.encode(fullname, "UTF-8"));
+                    result.append("&");
                     result.append(URLEncoder.encode("medName", "UTF-8"));
                     result.append("=");
                     result.append(URLEncoder.encode(medName, "UTF-8"));
@@ -263,10 +266,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
                     result.append(URLEncoder.encode("dS", "UTF-8"));
                     result.append("=");
                     result.append(URLEncoder.encode(dosage, "UTF-8"));
-                    result.append("&");
-                    result.append(URLEncoder.encode("dets", "UTF-8"));
-                    result.append("=");
-                    result.append(URLEncoder.encode(dets, "UTF-8"));
                     result.append("&");
                     for(int i = 0; i< timelist.size(); i++){
                         String name = "time"+i;
@@ -282,6 +281,7 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
                             result.append("&");
                         }
                     }
+                    System.out.println(result.toString());
                     write.write(result.toString());
                     write.flush();
                     write.close();
@@ -292,17 +292,6 @@ public class setMedinfoFragment extends Fragment implements View.OnClickListener
                     String x;
                     while ((x = b.readLine()) != null) {
                         System.out.println(x);
-
-                        if (x.equals("bad")){
-                            //temp.setUserName("ERRORafterPost979");
-                            System.out.println("bad");
-
-                        }
-                        // System.out.println(temp.getUserName());
-                        else{
-                            System.out.println("good");
-                        }
-
                     }
 
                     t = true;

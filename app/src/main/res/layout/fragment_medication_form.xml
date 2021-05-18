@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".controllers.MedicationFormFragment">
 
-    <TextView
-        android:id="@+id/med_form_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/med_form"
-        android:textColor="#2196F3"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="390dp"
         android:layout_height="630dp"
@@ -28,8 +15,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/med_form_title"
+
         app:layout_constraintVertical_bias="0.545">
+
+        <TextView
+            android:id="@+id/med_form_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/med_form"
+            android:textColor="#2196F3"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/med_name_label"
@@ -44,7 +43,9 @@
             android:id="@+id/med_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_name_hint" />
+            android:backgroundTint="#000000"
+            android:hint="@string/med_name_hint"
+            android:textColor="#0E0E0E" />
 
         <TextView
             android:id="@+id/med_dosage_label"
@@ -58,7 +59,9 @@
             android:id="@+id/med_dosage_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_dosage_hint" />
+            android:backgroundTint="#000000"
+            android:hint="@string/med_dosage_hint"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/med_doctor_label"
@@ -72,7 +75,9 @@
             android:id="@+id/med_doctor_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/med_doctor_hint" />
+            android:backgroundTint="#000000"
+            android:hint="@string/med_doctor_hint"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/med_date_label"
@@ -82,32 +87,20 @@
             android:text="@string/med_date"
             android:textColor="#2196F3" />
 
-        <Button
+        <EditText
             android:id="@+id/med_date_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FCFCFC"
-            android:backgroundTint="#1E80EF"
-            android:hint="@string/med_date_hint"
-            android:textColorHint="#FFFFFF" />
-
-        <TextView
-            android:id="@+id/med_details_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:drawableTint="#F2F2F2"
-            android:text="@string/med_details"
-            android:textColor="#2196F3" />
-
-        <EditText
-            android:id="@+id/med_details_multiline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/med_details_hint"
-            android:inputType="textMultiLine" />
+            android:hint="Prescribed Date"
+            android:inputType="textPersonName"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/setReminders"
+            android:layout_width="242dp"
+            android:layout_height="wrap_content"
+            android:text="Set Reminders" />
 
 
     </LinearLayout>

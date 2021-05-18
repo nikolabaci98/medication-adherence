@@ -25,7 +25,7 @@ the purpose of writing less code and keeping the project organized.
 public abstract class SingleFragmentActivity extends AppCompatActivity implements View.OnClickListener {
     protected abstract Fragment createFragment() throws IOException;
     private Button signOut;
-    Button viewAccount;
+
     Button Home;
     Button PatientLink;
     Button addMedication;
@@ -36,7 +36,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
         setContentView(R.layout.activity_fragment);
         currentUser = getIntent().getParcelableExtra("currentUser");
         signOut = findViewById(R.id.signoutButton);
-        viewAccount = findViewById(R.id.viewAccount);
+
         Home = findViewById(R.id.goHome);
         PatientLink = findViewById(R.id.patientlink);
         addMedication = findViewById(R.id.addMedication);
@@ -63,14 +63,15 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     @Override
     protected void onResume() {
         super.onResume();
-        signOut.setOnClickListener(new View.OnClickListener() {
+        /*signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 registerUser();
             }
-        });
-        viewAccount.setOnClickListener(this);
+        });*/
+        signOut.setOnClickListener(this);
+
         Home.setOnClickListener(this);
         PatientLink.setOnClickListener(this);
         addMedication.setOnClickListener(this);
@@ -78,14 +79,12 @@ public abstract class SingleFragmentActivity extends AppCompatActivity implement
     @Override
     public void onClick(View view) {
         if(view.getId() == signOut.getId()) {
-            FirebaseAuth.getInstance().signOut();
-            registerUser();
-        }
-        else if(view.getId() == viewAccount.getId()){
-            Intent intent = new Intent(this, ViewAccountActivity.class);
-            intent.putExtra("currentUser", currentUser);
+            Intent intent  = new Intent(this, testStart.class);
             startActivity(intent);
+
+
         }
+
         else if(view.getId() == Home.getId()){
             Intent intent = new Intent(this, DashboardActivity.class);
             intent.putExtra("currentUser", currentUser);
